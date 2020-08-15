@@ -9,6 +9,7 @@ env:
 services:
 - docker
 before_install:
+- echo $DOCKER_PASSWORD
 - sudo curl -L https://github.com/hadolint/hadolint/releases/download/v$HADOLINT_VERSION/hadolint-$(uname -s)-$(uname -m) -o /usr/local/bin/hadolint
 - sudo chmod 755 /usr/local/bin/hadolint
 - CLIENT_PORT=$(cat /dev/urandom|od -N2 -An -i|awk -v f=10000 -v r=19999 '{printf "%i\n", f + r * $1 / 65536}')
