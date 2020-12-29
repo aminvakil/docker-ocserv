@@ -2,6 +2,19 @@
 
 docker-ocserv is an OpenConnect VPN Server boxed in a Docker image built by [Tommy Lau](mailto:tommy@gen-new.com) currently maintained by [Amin Vakil](mailto:info@aminvakil.com).
 
+## Update on Dec 30, 2020
+
+Upgrade alpine to 3.12.3 and ocserv to 1.1.2.
+
+###**Important Note**:
+
+`isolate-workers = true` should be disabled in ocserv.conf, otherwise clients keep disconnecting after a while.
+
+This has been set by default on the new docker images, but you should change your current containers with this command yourself:
+
+```bash
+docker exec YOUR_CONTAINER_NAME sed -i 's/^isolate-workers/#isolate-workers/' /etc/ocserv/ocserv.conf
+```
 ## Update on Sep 05, 2020
 
 Migrate from Docker Hub to Quay as they're going to put limit for those who aren't willing to give them money.

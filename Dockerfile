@@ -65,6 +65,7 @@ RUN set -x \
 	&& sed -i 's/^no-route/#no-route/' /etc/ocserv/ocserv.conf \
 	&& sed -i '/\[vhost:www.example.com\]/,$d' /etc/ocserv/ocserv.conf \
 	&& sed -i '/^cookie-timeout = /{s/300/3600/}' /etc/ocserv/ocserv.conf \
+	&& sed -i 's/^isolate-workers/#isolate-workers/' /etc/ocserv/ocserv.conf \
 	&& cat /tmp/routes.txt >> /etc/ocserv/ocserv.conf \
 	&& rm -rf /tmp/routes.txt
 
