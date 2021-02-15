@@ -5,6 +5,8 @@ name: CI/CD
   push:
     branches:
       - unstable
+  schedule:
+    - cron: '0 0 * * *'
 
 jobs:
 
