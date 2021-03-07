@@ -56,17 +56,11 @@ jobs:
       - name: Check if the container is correctly stopped and removed.
         run: docker stop ${DOCKERCONTAINER} && docker rm -fv ${DOCKERCONTAINER}
 
-      - name: Install trivy.
-        run: |
-          sudo curl -L https://github.com/aquasecurity/trivy/releases/download/v$TRIVY_VERSION/trivy_"$TRIVY_VERSION"_$(uname -s)-64bit.tar.gz -o /tmp/trivy.tar.gz
-          sudo tar -xzf /tmp/trivy.tar.gz -C /tmp
-          sudo mv /tmp/trivy /usr/local/bin/trivy
-          sudo chmod 755 /usr/local/bin/trivy
-        env:
-          TRIVY_VERSION: 0.16.0
-
-      - name: Run trivy.
-        run: trivy image --exit-code 1 ${GITHUB_REPOSITORY}:${GITHUB_RUN_ID}
+      - name: Run Trivy vulnerability scanner.
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: ${{ github.repository }}:${{ github.run_id }}
+          exit-code: '1'
 
   deploy:
     if: ${{ github.ref == 'refs/heads/master' }}
