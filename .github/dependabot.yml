@@ -1,0 +1,19 @@
+# To get started with Dependabot version updates, you'll need to specify which
+# package ecosystems to update and where the package manifests are located.
+# Please see the documentation for all configuration options:
+# https://docs.github.com/github/administering-a-repository/configuration-options-for-dependency-updates
+
+version: 2
+updates:
+    # Keep Docker dependencies up to date
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    # Raise pull requests for Docker version updates
+    # against the "develop" branch. The Docker configuration
+    # no longer affects security update pull requests.
+    target-branch: "master"
+    # Use custom labels on pull requests for Docker version updates
+    labels:
+      - "Docker dependencies"
