@@ -22,7 +22,7 @@ jobs:
           echo "OC_VERSION=$OC_VERSION" >> $GITHUB_OUTPUT
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@v5
+        uses: peter-evans/create-pull-request@v8
         with:
           commit-message: "Bump ocserv version ${{ steps.get_version.outputs.OC_VERSION }}"
           token: ${{ secrets.GITHUB_TOKEN }}
