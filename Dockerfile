@@ -2,7 +2,7 @@ FROM alpine:3.23.2
 
 LABEL maintainer="Amin Vakil <info@aminvakil.com>, Dmitry Romashov <dmitry@romashov.tech>"
 
-ENV OC_VERSION=1.3.0
+ENV OC_VERSION=1.4.0
 ENV OC_IPV4_NETWORK="192.168.99.0"
 ENV OC_IPV4_NETMASK="255.255.255.0"
 
