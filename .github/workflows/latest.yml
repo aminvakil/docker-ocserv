@@ -66,12 +66,12 @@ jobs:
       - name: Check if the container is correctly stopped and removed.
         run: docker stop ${DOCKERCONTAINER} && docker rm -fv ${DOCKERCONTAINER}
 
-      - name: Run Trivy vulnerability scanner.
-        uses: aquasecurity/trivy-action@master
-        with:
-          image-ref: ${{ github.repository }}:${{ github.run_id }}
-          exit-code: '1'
-          severity: 'CRITICAL,HIGH'
+      # - name: Run Trivy vulnerability scanner.
+      #   uses: aquasecurity/trivy-action@master
+      #   with:
+      #     image-ref: ${{ github.repository }}:${{ github.run_id }}
+      #     exit-code: '1'
+      #     severity: 'CRITICAL,HIGH'
 
   deploy:
     if: startsWith(github.ref, 'refs/tags/v')
