@@ -19,9 +19,13 @@ RUN buildDeps=( \
 		libnl3-dev \
 		libseccomp-dev \
 		linux-headers \
+		gperf \
+		ipcalc \
 		linux-pam-dev \
 		lz4-dev \
 		make \
+		meson \
+		protobuf-c-compiler \
 		readline-dev \
 		tar \
 		xz \
@@ -32,9 +36,9 @@ RUN buildDeps=( \
 	&& tar -xf ocserv.tar.xz -C /usr/src/ocserv --strip-components=1 \
 	&& rm ocserv.tar.xz* \
 	&& cd /usr/src/ocserv \
-	&& ./configure \
-	&& make \
-	&& make install \
+	&& meson setup build \
+	&& meson compile -C build \
+	&& meson install -C build \
 	&& mkdir -p /etc/ocserv \
 	&& cp /usr/src/ocserv/doc/sample.config /tmp/ocserv-default.conf \
 	&& cd / \
