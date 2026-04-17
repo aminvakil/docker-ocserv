@@ -2,7 +2,7 @@ FROM alpine:3.23.4
 
 LABEL maintainer="Amin Vakil <info@aminvakil.com>, Dmitry Romashov <dmitry@romashov.tech>"
 
-ENV OC_VERSION=1.4.1
+ENV OC_VERSION=1.4.2
 ENV OC_IPV4_NETWORK="192.168.99.0"
 ENV OC_IPV4_NETMASK="255.255.255.0"
 
@@ -19,9 +19,12 @@ RUN buildDeps=( \
 		libnl3-dev \
 		libseccomp-dev \
 		linux-headers \
+		gperf \
+		ipcalc \
 		linux-pam-dev \
 		lz4-dev \
-		make \
+		meson \
+		protobuf-c-compiler \
 		readline-dev \
 		tar \
 		xz \
@@ -32,9 +35,9 @@ RUN buildDeps=( \
 	&& tar -xf ocserv.tar.xz -C /usr/src/ocserv --strip-components=1 \
 	&& rm ocserv.tar.xz* \
 	&& cd /usr/src/ocserv \
-	&& ./configure \
-	&& make \
-	&& make install \
+	&& meson setup build \
+	&& meson compile -C build \
+	&& meson install -C build \
 	&& mkdir -p /etc/ocserv \
 	&& cp /usr/src/ocserv/doc/sample.config /tmp/ocserv-default.conf \
 	&& cd / \
