@@ -23,7 +23,6 @@ RUN buildDeps=( \
 		ipcalc \
 		linux-pam-dev \
 		lz4-dev \
-		make \
 		meson \
 		protobuf-c-compiler \
 		readline-dev \
