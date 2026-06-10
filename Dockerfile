@@ -1,4 +1,4 @@
-FROM alpine:3.23.4
+FROM alpine:3.24.0
 
 LABEL maintainer="Amin Vakil <info@aminvakil.com>, Dmitry Romashov <dmitry@romashov.tech>"
 
