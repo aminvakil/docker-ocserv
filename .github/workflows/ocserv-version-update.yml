@@ -11,7 +11,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Update openconnect version
         id: get_version
@@ -21,7 +21,7 @@ jobs:
           echo "OC_VERSION=$OC_VERSION" >> $GITHUB_OUTPUT
 
       - name: Create PR
-        uses: peter-evans/create-pull-request@v8
+        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           commit-message: "Bump ocserv version ${{ steps.get_version.outputs.OC_VERSION }}"
           token: ${{ secrets.GITHUB_TOKEN }}
